@@ -1,0 +1,19 @@
+{
+    "name": "hexd/github",
+    "description": "github授权登录",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hexd",
+            "email": "hexiaodong2810@163.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Hexd\\": "src"
+        }
+    }
+}
