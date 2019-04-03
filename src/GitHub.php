@@ -84,6 +84,10 @@ class GitHub{
         curl_setopt($ch, CURLOPT_POST, 1);//post提交方式
         curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
         $data = curl_exec($ch);//运行curl
+        if (!$data){
+            echo 'Curl error: ' . curl_error($ch);
+        }
+        
         curl_close($ch);
         
         return $data;
@@ -104,9 +108,12 @@ class GitHub{
             curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
         }
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        $output = curl_exec($curl);
+        $data = curl_exec($curl);
+        if (!$data){
+            echo 'Curl error: ' . curl_error($ch);
+        }
         curl_close($curl);
         
-        return $output;
+        return $data;
     }
 }
