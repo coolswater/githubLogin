@@ -19,9 +19,9 @@ class GitHub{
      * @return void;
      * */
     public function __construct($options) {
-        self::$clientId = $options['clientId'];
+        self::$clientId = $options['client_id'];
         self::$callback = $options['callback'];
-        self::$clientSecret = $options['clientSecret'];
+        self::$clientSecret = $options['client_secret'];
     }
     //获取code的url
     public function getCodeUrl(){
