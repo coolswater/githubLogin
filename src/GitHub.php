@@ -88,6 +88,9 @@ class GitHub{
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, '0');
         curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
         $data = curl_exec($ch);//运行curl
+        if (!$data){
+            echo 'Curl error: ' . curl_error($ch);
+        }
         curl_close($ch);
         
         return $data;
@@ -112,9 +115,12 @@ class GitHub{
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, '0');
         #禁止 cURL 验证对等证书（peer's certificate）。要验证的交换证书可以在 CURLOPT_CAINFO 选项中设置
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, '0');
-        $output = curl_exec($ch);
+        $data = curl_exec($ch);
+        if (!$data){
+            echo 'Curl error: ' . curl_error($ch);
+        }
         curl_close($ch);
         
-        return $output;
+        return $data;
     }
 }
