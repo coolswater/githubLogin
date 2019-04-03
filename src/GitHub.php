@@ -123,7 +123,6 @@ class GitHub{
         #禁止 cURL 验证对等证书（peer's certificate）。要验证的交换证书可以在 CURLOPT_CAINFO 选项中设置
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, '0');
         $data = curl_exec($ch);
-        echo curl_getinfo($ch, CURLINFO_HEADER_OUT);
         if (!$data){
             echo 'Curl error: ' . curl_error($ch);
         }
