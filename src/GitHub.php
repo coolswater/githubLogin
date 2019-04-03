@@ -1,7 +1,5 @@
 <?php
-if (!defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
+namespace Hexd;
 /**
  * GitHub授权登录
  * author: hexiaodong
