@@ -41,8 +41,9 @@ class GitHub{
             'client_id'     => self::$clientId,
             'client_secret' => self::$clientSecret
         );
-        $accessToken = $this->getHttpResponsePOST(self::$getAccessTokenURL,$data);
-        
+        $result= $this->getHttpResponsePOST(self::$getAccessTokenURL,$data);
+        parse_str($result,$accessToken);
+    
         return $accessToken;
     }
     
