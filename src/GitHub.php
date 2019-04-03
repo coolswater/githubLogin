@@ -84,7 +84,6 @@ class GitHub{
         curl_setopt($ch, CURLOPT_POST, 1);//post提交方式
         curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
         $data = curl_exec($ch);//运行curl
-        echo curl_getinfo($ch);
         curl_close($ch);
         
         return $data;
@@ -106,9 +105,8 @@ class GitHub{
         }
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         $output = curl_exec($curl);
-         echo curl_getinfo($curl);
         curl_close($curl);
-        unset($curl);
+        
         return $output;
     }
 }
