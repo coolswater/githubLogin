@@ -82,12 +82,12 @@ class GitHub{
         curl_setopt($ch, CURLOPT_HEADER, 0);//设置header
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//要求结果为字符串且输出到屏幕上
         curl_setopt($ch, CURLOPT_POST, 1);//post提交方式
+        #设置为 1 是检查服务器SSL证书中是否存在一个公用名(common name)。
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, '0');
+        #禁止 cURL 验证对等证书（peer's certificate）。要验证的交换证书可以在 CURLOPT_CAINFO 选项中设置
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, '0');
         curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
         $data = curl_exec($ch);//运行curl
-        if (!$data){
-            echo 'Curl error: ' . curl_error($ch);
-        }
-        
         curl_close($ch);
         
         return $data;
@@ -102,18 +102,19 @@ class GitHub{
      * @return array    $output     远程输出的数据
      */
     public function getHttpResponseGET($url,$header=null) {
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
         if(!empty($header)){
-            curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         }
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        $data = curl_exec($curl);
-        if (!$data){
-            echo 'Curl error: ' . curl_error($ch);
-        }
-        curl_close($curl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        #设置为 1 是检查服务器SSL证书中是否存在一个公用名(common name)。
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, '0');
+        #禁止 cURL 验证对等证书（peer's certificate）。要验证的交换证书可以在 CURLOPT_CAINFO 选项中设置
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, '0');
+        $output = curl_exec($ch);
+        curl_close($ch);
         
-        return $data;
+        return $output;
     }
 }
